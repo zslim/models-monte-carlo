@@ -48,7 +48,8 @@ def generate_dataset(random_generator, lower, higher, radius, multiplicity):
 def draw_scatterplot(dataset):
     plot = (plotnine.ggplot(dataset)
             + plotnine.aes(x=X, y=Y, color=IS_IN_CIRCLE)
-            + plotnine.geom_point(size=0.01))
+            + plotnine.geom_point(size=0.01)
+            + plotnine.coord_fixed())
     return plot
 
 
@@ -74,8 +75,8 @@ def main():
     print(f"\nEstimation for pi: {area * rates[True]}\n")
     print(f"Rate of points in circle (sum): \n{dataset_sum[IS_IN_CIRCLE].value_counts(normalize=True)}")
 
-    #draw_scatterplot(dataset_uniform).save("egyenletes.png")
-    #draw_scatterplot(dataset_sum).save("koros.png")
+    draw_scatterplot(dataset_uniform).save("egyenletes.png")
+    draw_scatterplot(dataset_sum).save("koros.png")
 
 
 if __name__ == '__main__':
